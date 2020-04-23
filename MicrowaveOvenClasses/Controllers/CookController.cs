@@ -19,7 +19,7 @@ namespace MicrowaveOvenClasses.Controllers
             ITimer timer,
             IDisplay display,
             IPowerTube powerTube,
-            IUserInterface ui) : this(timer, display, powerTube)
+                IUserInterface ui) : this(timer, display, powerTube)
         {
             UI = ui;
         }
