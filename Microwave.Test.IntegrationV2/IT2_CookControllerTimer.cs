@@ -42,7 +42,9 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(11243)]
         public void StartCookingStartTimer(int time)
         {
-            
+            uut.StartCooking(70, time);
+
+
         }
 
 
