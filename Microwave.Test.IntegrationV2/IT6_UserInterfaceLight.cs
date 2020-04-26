@@ -8,17 +8,18 @@ using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Interfaces;
-using MicrowaveOvenClasses.Boundary;
-
 namespace Microwave.Test.IntegrationV2
 {
-    [TestFixture]
-    public class IT1_TimerCookController
-    {
-        [SetUp]
-        public void SetUp()
-        {
+	[TestFixture]
+	public class IT6_UserInterfaceLight
+	{
+		private IUserInterface uut;
+		private ILight light;
 
-        }
-    }
-}
+		[SetUp]
+		public void Setup()
+		{
+			light = Substitute.For<ILight>();
+			uut = new UserInterface(light);
+		}
+	}
