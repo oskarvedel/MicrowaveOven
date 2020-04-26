@@ -43,8 +43,15 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(121)]
         public void RemainingTimeIsDisplayedCorrectly(int secondsRemaining)
         {
+            //Arrange
             _timer.TimeRemaining.Returns(secondsRemaining);
+            string expectedOutput = ($"Display shows: {(secondsRemaining/60):D2}:{(secondsRemaining % 60):D2}");
 
+            //Act
+            _timer.TimerTick += Raise.EventWith(EventArgs.Empty);
+
+            //Assert
+            _output.Received(1).OutputLine(expectedOutput);
         }
     }
 }
