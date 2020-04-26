@@ -42,7 +42,6 @@ namespace Microwave.Test.IntegrationV2
             uut.StartCooking(power, 10);
 
             output.Received(1).OutputLine($"PowerTube works with {power}");
-            Assert.That(() => uut.StartCooking(power, 10), Throws.Nothing);
         }
 
         [TestCase(-5)]
@@ -77,10 +76,16 @@ namespace Microwave.Test.IntegrationV2
             output.Received(1).OutputLine($"PowerTube turned off");
         }
 
-        [Test]
+        [TestCase(1)]
+        [TestCase(50)]
+        [TestCase(100)]
         public void OnTimerExpiredTurnOff(int power)
         {
-    
+            uut.StartCooking(power, 10);
+
+            timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+            output.DidNotReceive().OutputLine(Arg.Any<string>());
         }
 
 
