@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Microwave.Test.IntegrationV2
 {
     [TestFixture]
-    class IT2_PowerTubeLight
+    class IT4_PowerTubeLight
     {
         private IOutput output;
         private IPowerTube uut;
