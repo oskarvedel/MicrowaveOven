@@ -14,7 +14,7 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -23,7 +23,7 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
+
 [Oo]bj/
 [Ll]og/
 
@@ -338,3 +338,55 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Microwave.Test.IntegrationV2/bin/Debug/Castle.Core.dll
+/Microwave.Test.IntegrationV2/bin/Debug/Castle.Core.xml
+/Microwave.Test.IntegrationV2/bin/Debug/System.Threading.Tasks.Extensions.xml
+/Microwave.Test.IntegrationV2/bin/Debug/System.Threading.Tasks.Extensions.dll
+/Microwave.Test.IntegrationV2/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/Microwave.Test.IntegrationV2/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/Microwave.Test.IntegrationV2/bin/Debug/nunit.framework.xml
+/Microwave.Test.IntegrationV2/bin/Debug/nunit.framework.dll
+/Microwave.Test.IntegrationV2/bin/Debug/NSubstitute.xml
+/Microwave.Test.IntegrationV2/bin/Debug/NSubstitute.dll
+/Microwave.Test.IntegrationV2/bin/Debug/MicrowaveOvenClasses.dll.config
+/Microwave.Test.IntegrationV2/bin/Debug/MicrowaveOvenClasses.dll
+/Microwave.Test.IntegrationV2/bin/Debug/Microwave.Test.Unit.dll.config
+/Microwave.Test.IntegrationV2/bin/Debug/Microwave.Test.Unit.dll
+/Microwave.Test.IntegrationV2/bin/Debug/Microwave.Application.exe.config
+/Microwave.Test.IntegrationV2/bin/Debug/Microwave.Application.exe
+/MicrowaveOvenClasses/bin/Debug/System.Threading.Tasks.Extensions.xml
+/MicrowaveOvenClasses/bin/Debug/System.Threading.Tasks.Extensions.dll
+/MicrowaveOvenClasses/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/MicrowaveOvenClasses/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/MicrowaveOvenClasses/bin/Debug/NSubstitute.xml
+/MicrowaveOvenClasses/bin/Debug/NSubstitute.dll
+/MicrowaveOvenClasses/bin/Debug/MicrowaveOvenClasses.dll.config
+/MicrowaveOvenClasses/bin/Debug/MicrowaveOvenClasses.dll
+/MicrowaveOvenClasses/bin/Debug/Castle.Core.xml
+/MicrowaveOvenClasses/bin/Debug/Castle.Core.dll
+/Microwave.Test.Unit/bin/Debug/System.Threading.Tasks.Extensions.xml
+/Microwave.Test.Unit/bin/Debug/System.Threading.Tasks.Extensions.dll
+/Microwave.Test.Unit/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/Microwave.Test.Unit/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/Microwave.Test.Unit/bin/Debug/nunit.framework.xml
+/Microwave.Test.Unit/bin/Debug/nunit.framework.dll
+/Microwave.Test.Unit/bin/Debug/NSubstitute.xml
+/Microwave.Test.Unit/bin/Debug/NSubstitute.dll
+/Microwave.Test.Unit/bin/Debug/MicrowaveOvenClasses.dll.config
+/Microwave.Test.Unit/bin/Debug/MicrowaveOvenClasses.dll
+/Microwave.Test.Unit/bin/Debug/Microwave.Test.Unit.dll.config
+/Microwave.Test.Unit/bin/Debug/Microwave.Test.Unit.dll
+/Microwave.Test.Unit/bin/Debug/Castle.Core.xml
+/Microwave.Test.Unit/bin/Debug/Castle.Core.dll
+/Microwave.Application/bin/Debug/System.Threading.Tasks.Extensions.xml
+/Microwave.Application/bin/Debug/System.Threading.Tasks.Extensions.dll
+/Microwave.Application/bin/Debug/System.Runtime.CompilerServices.Unsafe.xml
+/Microwave.Application/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/Microwave.Application/bin/Debug/NSubstitute.xml
+/Microwave.Application/bin/Debug/NSubstitute.dll
+/Microwave.Application/bin/Debug/MicrowaveOvenClasses.dll.config
+/Microwave.Application/bin/Debug/MicrowaveOvenClasses.dll
+/Microwave.Application/bin/Debug/Microwave.Application.exe.config
+/Microwave.Application/bin/Debug/Microwave.Application.exe
+/Microwave.Application/bin/Debug/Castle.Core.xml
+/Microwave.Application/bin/Debug/Castle.Core.dll
