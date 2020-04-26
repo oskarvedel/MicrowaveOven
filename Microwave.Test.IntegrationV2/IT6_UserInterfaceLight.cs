@@ -11,23 +11,7 @@ using MicrowaveOvenClasses.Interfaces;
 
 namespace Microwave.Test.IntegrationV2
 {
-<<<<<<< HEAD
-    /*
-    [TestFixture]
-    public class IT6_UserInterfaceLight
-    {
-        private IUserInterface uut;
-        private ILight light;
 
-        [SetUp]
-        public void Setup()
-        {
-            light = Substitute.For<ILight>();
-            uut = new UserInterface(light);
-        }
-    }
-    */
-=======
 	[TestFixture]
 	public class IT6_UserInterfaceLight
 	{
@@ -56,7 +40,6 @@ namespace Microwave.Test.IntegrationV2
 		[Test]
 		public void Test1 ()
 		{}
-
-}
->>>>>>> 39549180525a5f493b7f6a25f2be063c656630ac
+    
+    }
 }
