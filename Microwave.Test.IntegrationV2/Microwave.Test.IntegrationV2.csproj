@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IT1_CookControllerDisplay.cs" />
+    <Compile Include="IT1_CookControllerTimer.cs" />
     <Compile Include="IT6_UserInterfaceLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
