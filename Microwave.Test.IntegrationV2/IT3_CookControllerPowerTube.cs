@@ -27,8 +27,8 @@ namespace Microwave.Test.IntegrationV2
         public void Setup()
         {
             _userInterface = Substitute.For<IUserInterface>();
-            _timer = Substitute.For<ITimer>();
-       
+
+            _timer = new Timer();
             _display = new Display(_output);
             _output = new Output();
             _powerTube = new PowerTube(_output);
