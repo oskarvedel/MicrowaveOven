@@ -71,7 +71,6 @@
     <Compile Include="IT2_PowerTubeOutput.cs" />
     <Compile Include="IT6_CookControllerPowerTube.cs" />
     <Compile Include="IT3_LightOutput.cs" />
-    <Compile Include="IT6_UserInterfaceLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
