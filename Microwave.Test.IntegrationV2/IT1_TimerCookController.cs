@@ -15,6 +15,13 @@ namespace Microwave.Test.IntegrationV2
     [TestFixture]
     public class IT1_TimerCookController
     {
+        private Timer timer;
+        private IOutput output;
+        private IDisplay display;
+        private PowerTube powerTube;
+        private CookController cookController;
+        private IUserInterface userInterface;
+
         [SetUp]
         public void SetUp()
         {
