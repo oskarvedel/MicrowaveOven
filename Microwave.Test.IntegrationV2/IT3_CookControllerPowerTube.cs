@@ -119,7 +119,7 @@ namespace Microwave.Test.IntegrationV2
                 string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
 
                 //Act
-                _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+                _timer.Expired += Raise.EventWith(EventArgs.Empty);
 
                 //Assert
                 Assert.AreEqual(expectedOutput, stringWriter.ToString());
