@@ -46,10 +46,7 @@ namespace Microwave.Test.IntegrationV2
 
 			//act
 
-			_timer.TimerTick += Raise.EventWith(EventArgs.Empty);
-
 			//assert
-			Assert.That(uut.OnStartCancelPressed());
 		}
     
     }
