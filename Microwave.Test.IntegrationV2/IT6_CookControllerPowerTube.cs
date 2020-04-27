@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Microwave.Test.IntegrationV2
 {
     [TestFixture]
-    class IT3_CookControllerPowerTube
+    class IT6_CookControllerPowerTube
     {
 
         private IUserInterface _userInterface;

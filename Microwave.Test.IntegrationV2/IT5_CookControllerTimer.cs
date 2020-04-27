@@ -12,7 +12,7 @@ using MicrowaveOvenClasses.Interfaces;
 namespace Microwave.Test.IntegrationV2
 {
     [TestFixture]
-    public class IT2_CookControllerTimer
+    public class IT5_CookControllerTimer
     {
         private IUserInterface _userInterface;
         private ITimer _timer;
