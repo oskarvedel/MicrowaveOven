@@ -13,10 +13,9 @@ using System.Threading.Tasks;
 namespace Microwave.Test.IntegrationV2
 {
     [TestFixture]
-    class IT3_CookControllerPowerTube
+    class IT1_DisplayOutput
     {
-
-        private IUserInterface userInterface;
+	    private IUserInterface userInterface;
         private ITimer timer;
         private IPowerTube powerTube;
         private IDisplay display;
@@ -28,11 +27,11 @@ namespace Microwave.Test.IntegrationV2
         {
             userInterface = Substitute.For<IUserInterface>();
             timer = Substitute.For<ITimer>();
-       
-            display = new Display(output);
+            display = Substitute.For<IDisplay>();
+
             output = new Output();
             powerTube = new PowerTube(output);
-            uut = new CookController(timer, display, powerTube, userInterface);
+            uut = new Display(timer, display, powerTube, userInterface);
         }
 
         [TestCase(1)]
@@ -51,7 +50,7 @@ namespace Microwave.Test.IntegrationV2
                 uut.StartCooking(power, 10);
 
                 //Assert
-                Assert.AreEqual(expectedOutput,stringWriter.ToString());
+                Assert.AreEqual(expectedOutput, stringWriter.ToString());
             }
         }
 

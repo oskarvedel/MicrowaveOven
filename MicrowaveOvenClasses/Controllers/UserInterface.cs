@@ -55,7 +55,6 @@ namespace MicrowaveOvenClasses.Controllers
                     break;
             }
         }
-
         public void OnTimePressed(object sender, EventArgs e)
         {
             switch (myState)
