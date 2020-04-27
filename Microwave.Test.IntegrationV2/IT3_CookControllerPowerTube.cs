@@ -81,10 +81,19 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(100)]
         public void StopTurnOffCorrect(int power)
         {
-            uut.StartCooking(power, 10);
-            uut.Stop();
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                //Arrange
+                string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
 
-            output.Received(1).OutputLine($"PowerTube turned off");
+                //Act
+                uut.StartCooking(power, 10);
+                uut.Stop();
+
+                //Assert
+                Assert.AreEqual(expectedOutput, stringWriter.ToString());
+            }
         }
 
         [TestCase(1)]
@@ -92,14 +101,20 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(100)]
         public void OnTimerExpiredTurnOff(int power)
         {
-            uut.StartCooking(power, 10);
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
 
-            timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+                //Arrange
+                uut.StartCooking(power, 10);
+                string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
 
-            output.DidNotReceive().OutputLine(Arg.Any<string>());
+                //Act
+                timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+                //Assert
+                Assert.AreEqual(expectedOutput, stringWriter.ToString());
+            }
         }
-
-
-
     }
 }
