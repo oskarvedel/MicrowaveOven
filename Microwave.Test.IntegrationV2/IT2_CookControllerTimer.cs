@@ -44,6 +44,7 @@ namespace Microwave.Test.IntegrationV2
             uut.StartCooking(70, time);
         }
 
+        [Test]
         public void CookControllerCheckTimer()
         {
             uut.StartCooking(80,20);

@@ -5,6 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,10 +27,10 @@ namespace Microwave.Test.IntegrationV2
         public void Setup()
         {
             userInterface = Substitute.For<IUserInterface>();
-            output = Substitute.For<IOutput>();
             timer = Substitute.For<ITimer>();
             display = Substitute.For<IDisplay>();
 
+            output = new Output();
             powerTube = new PowerTube(output);
             uut = new CookController(timer, display, powerTube, userInterface);
         }
@@ -39,9 +40,19 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(100)]
         public void StartCookingTurnOnWithCorretValues(int power)
         {
-            uut.StartCooking(power, 10);
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
 
-            output.Received(1).OutputLine($"PowerTube works with {power}");
+                //Arrange
+                string expectedOutput = $"PowerTube works with {power}\r\n";
+
+                //Act
+                uut.StartCooking(power, 10);
+
+                //Assert
+                Assert.AreEqual(expectedOutput,stringWriter.ToString());
+            }
         }
 
         [TestCase(-5)]
