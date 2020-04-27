@@ -19,7 +19,7 @@ namespace Microwave.Test.IntegrationV2
         private IPowerTube powerTube;
         private IDisplay display;
         private IOutput output;
-        private ICookController uut;
+        private ICookController sut;
 
         [SetUp]
         public void Setup()
@@ -31,7 +31,7 @@ namespace Microwave.Test.IntegrationV2
 
 
             timer = new Timer();
-            uut = new CookController(timer,display,powerTube,userInterface);
+            sut = new CookController(timer,display,powerTube,userInterface);
         }
 
         [TestCase(1000)]
@@ -41,14 +41,14 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(11243)]
         public void StartCookingStartTimer(int time)
         {
-            uut.StartCooking(70, time);
+            sut.StartCooking(70, time);
         }
 
         [Test]
         public void CookControllerCheckTimer()
         {
-            uut.StartCooking(80,20);
-            uut.Stop();
+            sut.StartCooking(80,20);
+            sut.Stop();
             Assert.That(timer.TimeRemaining,Is.EqualTo(0));
         }
 
