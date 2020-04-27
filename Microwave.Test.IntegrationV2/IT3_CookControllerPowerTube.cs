@@ -16,23 +16,23 @@ namespace Microwave.Test.IntegrationV2
     class IT3_CookControllerPowerTube
     {
 
-        private IUserInterface userInterface;
-        private ITimer timer;
-        private IPowerTube powerTube;
-        private IDisplay display;
-        private IOutput output;
-        private ICookController uut;
+        private IUserInterface _userInterface;
+        private ITimer _timer;
+        private IPowerTube _powerTube;
+        private IDisplay _display;
+        private IOutput _output;
+        private ICookController _sut;
 
         [SetUp]
         public void Setup()
         {
-            userInterface = Substitute.For<IUserInterface>();
-            timer = Substitute.For<ITimer>();
-            display = Substitute.For<IDisplay>();
-
-            output = new Output();
-            powerTube = new PowerTube(output);
-            uut = new CookController(timer, display, powerTube, userInterface);
+            _userInterface = Substitute.For<IUserInterface>();
+            _timer = Substitute.For<ITimer>();
+       
+            _display = new Display(_output);
+            _output = new Output();
+            _powerTube = new PowerTube(_output);
+            _sut = new CookController(_timer, _display, _powerTube, _userInterface);
         }
 
         [TestCase(1)]
@@ -48,7 +48,7 @@ namespace Microwave.Test.IntegrationV2
                 string expectedOutput = $"PowerTube works with {power}\r\n";
 
                 //Act
-                uut.StartCooking(power, 10);
+                _sut.StartCooking(power, 10);
 
                 //Assert
                 Assert.AreEqual(expectedOutput,stringWriter.ToString());
@@ -60,9 +60,9 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(120)]
         public void StartCookingTurnOnWithIncorretValuesThrowExecption(int power)
         {
-            uut.StartCooking(power, 10);
+            _sut.StartCooking(power, 10);
 
-            Assert.That(() => uut.StartCooking(power, 10), Throws.Exception);
+            Assert.That(() => _sut.StartCooking(power, 10), Throws.Exception);
         }
 
         [TestCase(1)]
@@ -70,9 +70,9 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(100)]
         public void StartCookingTurnOnAlreadyTurnedOnThrowExecption(int power)
         {
-            uut.StartCooking(power, 10);
+            _sut.StartCooking(power, 10);
 
-            Assert.That(() => uut.StartCooking(power, 10), Throws.Exception);
+            Assert.That(() => _sut.StartCooking(power, 10), Throws.Exception);
         }
 
 
@@ -88,8 +88,8 @@ namespace Microwave.Test.IntegrationV2
                 string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
 
                 //Act
-                uut.StartCooking(power, 10);
-                uut.Stop();
+                _sut.StartCooking(power, 10);
+                _sut.Stop();
 
                 //Assert
                 Assert.AreEqual(expectedOutput, stringWriter.ToString());
@@ -106,11 +106,11 @@ namespace Microwave.Test.IntegrationV2
                 Console.SetOut(stringWriter);
 
                 //Arrange
-                uut.StartCooking(power, 10);
+                _sut.StartCooking(power, 10);
                 string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
 
                 //Act
-                timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+                _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
 
                 //Assert
                 Assert.AreEqual(expectedOutput, stringWriter.ToString());
