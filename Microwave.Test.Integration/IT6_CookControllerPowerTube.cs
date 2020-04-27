@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace Microwave.Test.Integration
 {
@@ -25,8 +27,8 @@ namespace Microwave.Test.Integration
             _userInterface = Substitute.For<IUserInterface>();
 
             _timer = new Timer();
-            _display = new Display(_output);
             _output = new Output();
+            _display = new Display(_output);
             _powerTube = new PowerTube(_output);
             _sut = new CookController(_timer, _display, _powerTube, _userInterface);
         }
@@ -98,27 +100,28 @@ namespace Microwave.Test.Integration
 
                 //Assert
                 Assert.AreEqual(expectedOutput, stringWriter.ToString());
+                Assert.That(_sut.isCooking, Is.EqualTo(false));
             }
         }
 
-        [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(100)]
-        public void OnTimerExpiredTurnOff(int power)
+        [Test]
+        public void OnTimerExpiredTurnOff()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
 
                 //Arrange
-                _sut.StartCooking(power, 10);
-                string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
+                _sut.StartCooking(10, 2000);
+                string expectedOutput = $"PowerTube works with {10}\r\nPowerTube turned off\r\n";
 
                 //Act
-                _timer.Expired += Raise.EventWith(EventArgs.Empty);
+                Thread.Sleep(2500);
+                //_timer.Expired += Raise.EventWith(EventArgs.Empty);
 
                 //Assert
-                Assert.AreEqual(expectedOutput, stringWriter.ToString());
+                Assert.That(_sut.isCooking,Is.EqualTo(false));
+                Assert.That(_timer.TimeRemaining <= 0);
             }
         }
     }
