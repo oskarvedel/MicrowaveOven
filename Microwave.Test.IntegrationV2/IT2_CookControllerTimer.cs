@@ -34,24 +34,11 @@ namespace Microwave.Test.IntegrationV2
             _sut = new CookController(_timer,_display,_powerTube,_userInterface);
         }
 
-        [TestCase(1000)]
-        [TestCase(2100)]
-        [TestCase(3250)]
-        [TestCase(4001)]
-        [TestCase(11243)]
-        public void StartCookingStartTimer(int time)
-        {
-            _sut.StartCooking(70, time);
-        }
-
         [Test]
-        public void CookControllerCheckTimer()
+        public void StartCookingStartTimer()
         {
-            _sut.StartCooking(80,20);
-            _sut.Stop();
-            Assert.That(_timer.TimeRemaining,Is.EqualTo(0));
+            _sut.StartCooking(70, 40);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(40));
         }
-
-
     }
 }
