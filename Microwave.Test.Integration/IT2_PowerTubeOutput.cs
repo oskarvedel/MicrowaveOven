@@ -47,9 +47,9 @@ namespace Microwave.Test.Integration
 			using (StringWriter stringWriter = new StringWriter())
 			{
 				//Arrange
-				string expectedOutput = $"PowerTube turned off\r\n";
-				_sut.TurnOn(50);
 				Console.SetOut(stringWriter);
+				string expectedOutput = $"PowerTube works with 50\r\nPowerTube turned off\r\n";
+				_sut.TurnOn(50);
 
 				//Act
 				_sut.TurnOff();

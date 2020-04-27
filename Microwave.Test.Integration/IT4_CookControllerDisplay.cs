@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class IT1_CookControllerDisplay
+    class IT4_CookControllerDisplay
     {
         private IOutput _output;
         private IDisplay _display;

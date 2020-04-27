@@ -43,9 +43,9 @@ namespace Microwave.Test.Integration
 			using (StringWriter stringWriter = new StringWriter())
 			{
 				//Arrange
-				string expectedOutput = $"Light is turned off\r\n";
-				_sut.TurnOn();
 				Console.SetOut(stringWriter);
+				string expectedOutput = $"Light is turned on\r\nLight is turned off\r\n";
+				_sut.TurnOn();
 
 				//Act
 				_sut.TurnOff();
