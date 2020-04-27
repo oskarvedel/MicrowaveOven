@@ -60,9 +60,9 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(120)]
         public void StartCookingTurnOnWithIncorretValuesThrowExecption(int power)
         {
-            _sut.StartCooking(power, 10);
-
-            Assert.Throws < System.ArgumentOutOfRangeException>(() => _sut.StartCooking(power, 10));
+            
+                Assert.Throws<ArgumentOutOfRangeException>(() => _sut.StartCooking(power, 10));
+           
         }
 
         [TestCase(1)]
@@ -76,7 +76,7 @@ namespace Microwave.Test.IntegrationV2
 
             _sut.StartCooking(power, 10);
 
-            Assert.Throws<System.ApplicationException>(() => _sut.StartCooking(power, 10));
+                Assert.Throws<ApplicationException>(() => _sut.StartCooking(power, 10));
         }
 
 
