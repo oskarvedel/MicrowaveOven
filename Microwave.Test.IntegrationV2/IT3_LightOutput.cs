@@ -13,33 +13,30 @@ using System.Threading.Tasks;
 namespace Microwave.Test.IntegrationV2
 {
 	[TestFixture]
-	class IT1_DisplayOutput
+	class IT3_LightOutput
 	{
 		private IOutput _output;
-		private IDisplay _sut;
+		private ILight _sut;
 
 		[SetUp]
 		public void Setup()
 		{
 			_output = new Output();
-			_sut = new Display(_output);
+			_sut = new Light(_output);
 		}
 
 		[Test]
-		[TestCase(0, 0)]
-		[TestCase(1, 1)]
-		[TestCase(60, 60)]
-		public void ShowTimeOutputIsCorrectTime(int min, int sec)
+		public void TurnOnOutputIsCorrect()
 		{
 			using (StringWriter stringWriter = new StringWriter())
 			{
 				Console.SetOut(stringWriter);
 
 				//Arrange
-				string expectedOutput = $"Display shows: {min:D2}:{sec:D2}\r\n";
+				string expectedOutput = $"Light is turned on\r\n";
 
 				//Act
-				_sut.ShowTime(min, sec);
+				_sut.TurnOn();
 
 				//Assert
 				Assert.AreEqual(expectedOutput, stringWriter.ToString());
@@ -47,43 +44,21 @@ namespace Microwave.Test.IntegrationV2
 		}
 
 		[Test]
-		[TestCase(0)]
-		[TestCase(50)]
-		[TestCase(100)]
-		public void ShowPowerOutputIsCorrect(int power)
+		public void TurnOffOutputIsCorrect()
 		{
 			using (StringWriter stringWriter = new StringWriter())
 			{
+				//Arrange
+				string expectedOutput = $"Light is turned off\r\n";
+				_sut.TurnOn();
 				Console.SetOut(stringWriter);
 
-				//Arrange
-				string expectedOutput = $"Display shows: {power} W\r\n";
-
 				//Act
-				_sut.ShowPower(power);
+				_sut.TurnOff();
 
 				//Assert
 				Assert.AreEqual(expectedOutput, stringWriter.ToString());
 			}
 		}
-
-		[Test]
-		public void ClearOutputIsCorrect()
-		{
-			using (StringWriter stringWriter = new StringWriter())
-			{
-				Console.SetOut(stringWriter);
-
-				//Arrange
-				string expectedOutput = $"Display cleared\r\n";
-
-				//Act
-				_sut.Clear();
-
-				//Assert
-				Assert.AreEqual(expectedOutput, stringWriter.ToString());
-			}
-		}
-
 	}
 }

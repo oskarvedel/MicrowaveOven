@@ -13,77 +13,56 @@ using System.Threading.Tasks;
 namespace Microwave.Test.IntegrationV2
 {
 	[TestFixture]
-	class IT1_DisplayOutput
+	class IT2_PowerTubeOutput
 	{
 		private IOutput _output;
-		private IDisplay _sut;
+		private IPowerTube _sut;
 
 		[SetUp]
 		public void Setup()
 		{
 			_output = new Output();
-			_sut = new Display(_output);
+			_sut = new PowerTube(_output);
 		}
 
 		[Test]
-		[TestCase(0, 0)]
-		[TestCase(1, 1)]
-		[TestCase(60, 60)]
-		public void ShowTimeOutputIsCorrectTime(int min, int sec)
-		{
-			using (StringWriter stringWriter = new StringWriter())
-			{
-				Console.SetOut(stringWriter);
-
-				//Arrange
-				string expectedOutput = $"Display shows: {min:D2}:{sec:D2}\r\n";
-
-				//Act
-				_sut.ShowTime(min, sec);
-
-				//Assert
-				Assert.AreEqual(expectedOutput, stringWriter.ToString());
-			}
-		}
-
-		[Test]
-		[TestCase(0)]
+		[TestCase(1)]
 		[TestCase(50)]
 		[TestCase(100)]
-		public void ShowPowerOutputIsCorrect(int power)
+		public void TurnOnOutputIsCorrect(int power)
 		{
 			using (StringWriter stringWriter = new StringWriter())
 			{
 				Console.SetOut(stringWriter);
 
 				//Arrange
-				string expectedOutput = $"Display shows: {power} W\r\n";
+				string expectedOutput = $"PowerTube works with {power}\r\n";
 
 				//Act
-				_sut.ShowPower(power);
+				_sut.TurnOn(power);
 
 				//Assert
 				Assert.AreEqual(expectedOutput, stringWriter.ToString());
 			}
 		}
+
 
 		[Test]
-		public void ClearOutputIsCorrect()
+		public void TurnOffOutputIsCorrect()
 		{
 			using (StringWriter stringWriter = new StringWriter())
 			{
+				//Arrange
+				string expectedOutput = $"PowerTube turned off\r\n";
+				_sut.TurnOn(50);
 				Console.SetOut(stringWriter);
 
-				//Arrange
-				string expectedOutput = $"Display cleared\r\n";
-
 				//Act
-				_sut.Clear();
+				_sut.TurnOff();
 
 				//Assert
 				Assert.AreEqual(expectedOutput, stringWriter.ToString());
 			}
 		}
-
 	}
 }
