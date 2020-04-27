@@ -13,7 +13,7 @@ using MicrowaveOvenClasses.Boundary;
 namespace Microwave.Test.IntegrationV2
 {
     [TestFixture]
-    public class IT1_CookControllerTimer
+    public class IT2_CookControllerTimer
     {
         private IUserInterface userInterface;
         private ITimer timer;
@@ -35,6 +35,17 @@ namespace Microwave.Test.IntegrationV2
             uut = new CookController(timer,display,powerTube,userInterface);
         }
 
+        [TestCase(1000)]
+        [TestCase(2100)]
+        [TestCase(3250)]
+        [TestCase(4001)]
+        [TestCase(11243)]
+        public void StartCookingStartTimer(int time)
+        {
+            uut.StartCooking(70, time);
+
+
+        }
 
 
     }
