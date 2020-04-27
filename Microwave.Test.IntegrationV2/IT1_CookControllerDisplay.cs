@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace Microwave.Test.IntegrationV2
             _timer = Substitute.For<ITimer>();
             _userInterface = Substitute.For<IUserInterface>();
 
-            _output = Substitute.For<IOutput>();
+            _output = new Output();
             _display = new Display(_output);
 
             _sut = new CookController(_timer,_display,_powerTube,_userInterface);
@@ -43,15 +44,21 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(121)]
         public void RemainingTimeIsDisplayedCorrectly(int secondsRemaining)
         {
-            //Arrange
-            _timer.TimeRemaining.Returns(secondsRemaining);
-            string expectedOutput = ($"Display shows: {(secondsRemaining/60):D2}:{(secondsRemaining % 60):D2}");
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
 
-            //Act
-            _timer.TimerTick += Raise.EventWith(EventArgs.Empty);
+                //Arrange
+                _timer.TimeRemaining.Returns(secondsRemaining);
+                string expectedOutput = ($"Display shows: {(secondsRemaining/60):D2}:{(secondsRemaining % 60):D2}\r\n");
 
-            //Assert
-            _output.Received(1).OutputLine(expectedOutput);
+                
+                //Act
+                _timer.TimerTick += Raise.EventWith(EventArgs.Empty);
+
+                //Assert
+                Assert.AreEqual(expectedOutput,stringWriter.ToString());
+            }
         }
     }
 }
