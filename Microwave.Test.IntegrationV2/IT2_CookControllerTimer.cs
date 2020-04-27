@@ -52,6 +52,12 @@ namespace Microwave.Test.IntegrationV2
             Assert.That(timer.TimeRemaining,Is.EqualTo(0));
         }
 
+        [Test]
+        public void CheckForTick()
+        {
+
+        }
+
 
     }
 }
