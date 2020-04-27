@@ -23,6 +23,7 @@ namespace Microwave.Test.IntegrationV2
 		private IButton powerButton;
 		private IButton timeButton;
 		private IButton startCancelButton;
+		private IOutput output;
 
 		[SetUp]
 		public void Setup()
@@ -32,14 +33,24 @@ namespace Microwave.Test.IntegrationV2
 			startCancelButton = Substitute.For<IButton>();
 			door = Substitute.For<IDoor>();
 			cookController = Substitute.For<ICookController>();
-			light = Substitute.For<ILight>();
 			display = Substitute.For<IDisplay>();
+			output = Substitute.For<IOutput>();
+			light = new Light(output);
 			uut = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cookController);
 		}
 
 		[Test]
-		public void Test1 ()
-		{}
+		public void Test1()
+		{
+			//arrange
+
+			//act
+
+			_timer.TimerTick += Raise.EventWith(EventArgs.Empty);
+
+			//assert
+			Assert.That(uut.OnStartCancelPressed());
+		}
     
     }
 }
