@@ -70,6 +70,10 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(100)]
         public void StartCookingTurnOnAlreadyTurnedOnThrowExecption(int power)
         {
+            var standardOut = new StreamWriter(Console.OpenStandardOutput());
+            standardOut.AutoFlush = true;
+            Console.SetOut(standardOut);
+
             _sut.StartCooking(power, 10);
 
             Assert.Throws<System.ApplicationException>(() => _sut.StartCooking(power, 10));
