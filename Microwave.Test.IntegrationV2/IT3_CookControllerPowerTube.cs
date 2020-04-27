@@ -62,7 +62,7 @@ namespace Microwave.Test.IntegrationV2
         {
             _sut.StartCooking(power, 10);
 
-            Assert.That(() => _sut.StartCooking(power, 10), Throws.Exception);
+            Assert.Throws < System.ArgumentOutOfRangeException>(() => _sut.StartCooking(power, 10));
         }
 
         [TestCase(1)]
@@ -72,7 +72,7 @@ namespace Microwave.Test.IntegrationV2
         {
             _sut.StartCooking(power, 10);
 
-            Assert.That(() => _sut.StartCooking(power, 10), Throws.Exception);
+            Assert.Throws<System.ApplicationException>(() => _sut.StartCooking(power, 10));
         }
 
 
