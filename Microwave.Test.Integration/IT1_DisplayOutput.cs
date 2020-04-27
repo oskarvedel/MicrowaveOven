@@ -1,16 +1,10 @@
-﻿using MicrowaveOvenClasses.Boundary;
-using MicrowaveOvenClasses.Controllers;
-using MicrowaveOvenClasses.Interfaces;
-using NSubstitute;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MicrowaveOvenClasses.Boundary;
+using MicrowaveOvenClasses.Interfaces;
+using NUnit.Framework;
 
-namespace Microwave.Test.IntegrationV2
+namespace Microwave.Test.Integration
 {
 	[TestFixture]
 	class IT1_DisplayOutput

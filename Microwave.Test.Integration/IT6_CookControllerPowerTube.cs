@@ -1,19 +1,15 @@
-﻿using MicrowaveOvenClasses.Boundary;
+﻿using System;
+using System.IO;
+using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Microwave.Test.IntegrationV2
+namespace Microwave.Test.Integration
 {
     [TestFixture]
-    class IT3_CookControllerPowerTube
+    class IT6_CookControllerPowerTube
     {
 
         private IUserInterface _userInterface;

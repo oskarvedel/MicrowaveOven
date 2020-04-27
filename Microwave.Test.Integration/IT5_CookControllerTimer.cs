@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using NSubstitute;
+﻿using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
-using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Interfaces;
+using NSubstitute;
+using NUnit.Framework;
 
-namespace Microwave.Test.IntegrationV2
+namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT2_CookControllerTimer
+    public class IT5_CookControllerTimer
     {
         private IUserInterface _userInterface;
         private ITimer _timer;

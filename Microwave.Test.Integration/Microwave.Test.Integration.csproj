@@ -13,8 +13,8 @@
     <ProjectGuid>{E5FBA432-FB37-4D33-84E8-95A0F40EA2F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microwave.Test.IntegrationV2</RootNamespace>
-    <AssemblyName>Microwave.Test.IntegrationV2</AssemblyName>
+    <RootNamespace>Microwave.Test.Integration</RootNamespace>
+    <AssemblyName>Microwave.Test.Integration</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -67,11 +67,10 @@
   <ItemGroup>
     <Compile Include="IT4_CookControllerDisplay.cs" />
     <Compile Include="IT1_DisplayOutput.cs" />
-    <Compile Include="IT2_CookControllerTimer.cs" />
+    <Compile Include="IT5_CookControllerTimer.cs" />
     <Compile Include="IT2_PowerTubeOutput.cs" />
-    <Compile Include="IT3_CookControllerPowerTube.cs" />
+    <Compile Include="IT6_CookControllerPowerTube.cs" />
     <Compile Include="IT3_LightOutput.cs" />
-    <Compile Include="IT6_UserInterfaceLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
