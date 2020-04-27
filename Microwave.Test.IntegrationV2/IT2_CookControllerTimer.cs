@@ -8,7 +8,6 @@ using NSubstitute;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Interfaces;
-using MicrowaveOvenClasses.Boundary;
 
 namespace Microwave.Test.IntegrationV2
 {
@@ -43,8 +42,13 @@ namespace Microwave.Test.IntegrationV2
         public void StartCookingStartTimer(int time)
         {
             uut.StartCooking(70, time);
+        }
 
-
+        public void CookControllerCheckTimer()
+        {
+            uut.StartCooking(80,20);
+            uut.Stop();
+            Assert.That(timer.TimeRemaining,Is.EqualTo(0));
         }
 
 
