@@ -14,24 +14,24 @@ namespace Microwave.Test.IntegrationV2
     [TestFixture]
     public class IT2_CookControllerTimer
     {
-        private IUserInterface userInterface;
-        private ITimer timer;
-        private IPowerTube powerTube;
-        private IDisplay display;
-        private IOutput output;
-        private ICookController sut;
+        private IUserInterface _userInterface;
+        private ITimer _timer;
+        private IPowerTube _powerTube;
+        private IDisplay _display;
+        private IOutput _output;
+        private ICookController _sut;
 
         [SetUp]
         public void Setup()
         {
-            userInterface = Substitute.For<IUserInterface>();
-            output = Substitute.For<IOutput>();
-            powerTube = Substitute.For<IPowerTube>();
-            display = Substitute.For<IDisplay>();
+            _userInterface = Substitute.For<IUserInterface>();
+            _output = Substitute.For<IOutput>();
+            _powerTube = Substitute.For<IPowerTube>();
+  
 
-
-            timer = new Timer();
-            sut = new CookController(timer,display,powerTube,userInterface);
+            _display = new Display(_output);
+            _timer = new Timer();
+            _sut = new CookController(_timer,_display,_powerTube,_userInterface);
         }
 
         [TestCase(1000)]
@@ -41,15 +41,15 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(11243)]
         public void StartCookingStartTimer(int time)
         {
-            sut.StartCooking(70, time);
+            _sut.StartCooking(70, time);
         }
 
         [Test]
         public void CookControllerCheckTimer()
         {
-            sut.StartCooking(80,20);
-            sut.Stop();
-            Assert.That(timer.TimeRemaining,Is.EqualTo(0));
+            _sut.StartCooking(80,20);
+            _sut.Stop();
+            Assert.That(_timer.TimeRemaining,Is.EqualTo(0));
         }
 
 
