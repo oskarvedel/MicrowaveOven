@@ -15,23 +15,14 @@ namespace Microwave.Test.IntegrationV2
     [TestFixture]
     class IT1_DisplayOutput
     {
-	    private IUserInterface userInterface;
-        private ITimer timer;
-        private IPowerTube powerTube;
-        private IDisplay display;
-        private IOutput output;
-        private ICookController uut;
+	    private IOutput _output;
+        private IDisplay _uut;
 
         [SetUp]
         public void Setup()
         {
-            userInterface = Substitute.For<IUserInterface>();
-            timer = Substitute.For<ITimer>();
-            display = Substitute.For<IDisplay>();
-
-            output = new Output();
-            powerTube = new PowerTube(output);
-            uut = new Display(timer, display, powerTube, userInterface);
+	        _output = new Output();
+	        _uut = new Display(_output);
         }
 
         [TestCase(1)]
@@ -42,74 +33,12 @@ namespace Microwave.Test.IntegrationV2
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-
+	            
                 //Arrange
                 string expectedOutput = $"PowerTube works with {power}\r\n";
 
                 //Act
-                uut.StartCooking(power, 10);
-
-                //Assert
-                Assert.AreEqual(expectedOutput, stringWriter.ToString());
-            }
-        }
-
-        [TestCase(-5)]
-        [TestCase(0)]
-        [TestCase(120)]
-        public void StartCookingTurnOnWithIncorretValuesThrowExecption(int power)
-        {
-            uut.StartCooking(power, 10);
-
-            Assert.That(() => uut.StartCooking(power, 10), Throws.Exception);
-        }
-
-        [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(100)]
-        public void StartCookingTurnOnAlreadyTurnedOnThrowExecption(int power)
-        {
-            uut.StartCooking(power, 10);
-
-            Assert.That(() => uut.StartCooking(power, 10), Throws.Exception);
-        }
-
-
-        [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(100)]
-        public void StopTurnOffCorrect(int power)
-        {
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                Console.SetOut(stringWriter);
-                //Arrange
-                string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
-
-                //Act
-                uut.StartCooking(power, 10);
-                uut.Stop();
-
-                //Assert
-                Assert.AreEqual(expectedOutput, stringWriter.ToString());
-            }
-        }
-
-        [TestCase(1)]
-        [TestCase(50)]
-        [TestCase(100)]
-        public void OnTimerExpiredTurnOff(int power)
-        {
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                Console.SetOut(stringWriter);
-
-                //Arrange
-                uut.StartCooking(power, 10);
-                string expectedOutput = $"PowerTube works with {power}\r\nPowerTube turned off\r\n";
-
-                //Act
-                timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+                //uut.StartCooking(power, 10);
 
                 //Assert
                 Assert.AreEqual(expectedOutput, stringWriter.ToString());
