@@ -35,6 +35,14 @@ namespace Microwave.Test.IntegrationV2
             _sut = new CookController(_timer, _display, _powerTube, _userInterface);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            var standardOut = new StreamWriter(Console.OpenStandardOutput());
+            standardOut.AutoFlush = true;
+            Console.SetOut(standardOut);
+        }
+
         [TestCase(1)]
         [TestCase(50)]
         [TestCase(100)]
@@ -61,7 +69,7 @@ namespace Microwave.Test.IntegrationV2
         public void StartCookingTurnOnWithIncorretValuesThrowExecption(int power)
         {
             
-                Assert.Throws<ArgumentOutOfRangeException>(() => _sut.StartCooking(power, 10));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _sut.StartCooking(power, 10));
            
         }
 
@@ -70,7 +78,8 @@ namespace Microwave.Test.IntegrationV2
         [TestCase(100)]
         public void StartCookingTurnOnAlreadyTurnedOnThrowExecption(int power)
         {
-                _sut.StartCooking(power, 10);
+
+            _sut.StartCooking(power, 10);
 
                 Assert.Throws<ApplicationException>(() => _sut.StartCooking(power, 10));
         }

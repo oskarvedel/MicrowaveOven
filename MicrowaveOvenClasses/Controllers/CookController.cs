@@ -10,7 +10,7 @@ namespace MicrowaveOvenClasses.Controllers
         // It also demonstrates property dependency injection
         public IUserInterface UI { set; private get; }
 
-        public bool isCooking { get; private set; } = false;
+        private bool isCooking = false;
 
         private IDisplay myDisplay;
         private IPowerTube myPowerTube;
@@ -48,12 +48,10 @@ namespace MicrowaveOvenClasses.Controllers
 
         public void OnTimerExpired(object sender, EventArgs e)
         {
-            if (isCooking)
-            {
-                myPowerTube.TurnOff();
-                UI.CookingIsDone();
-                isCooking = false;
-            }
+            if (!isCooking) return;
+            myPowerTube.TurnOff();
+            UI.CookingIsDone();
+            isCooking = false;
         }
 
         public void OnTimerTick(object sender, EventArgs e)
