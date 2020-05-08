@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace Microwave.Application
 {
@@ -42,6 +44,7 @@ namespace Microwave.Application
             timeButton.Press();
 
             startCancelButton.Press();
+
 
             // The simple sequence should now run
 

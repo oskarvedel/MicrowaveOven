@@ -114,11 +114,15 @@ namespace Microwave.Test.Integration
 
                 //Act
                 _sut.StartCooking(19, 10);
-                Thread.Sleep(1500);
+                Thread.Sleep(1300);
                 _sut.Stop();
 
                 //Assert
-                Assert.AreEqual(expectedOutput, stringWriter.ToString());
+                //Assert.AreEqual(expectedOutput, stringWriter.ToString());
+                Assert.AreEqual(true, stringWriter.ToString().Contains($"PowerTube works with {19}"));
+                Assert.AreEqual(true, stringWriter.ToString().Contains("Display shows: 00:09"));
+                Assert.AreEqual(true, stringWriter.ToString().Contains("PowerTube turned off"));
+
                 _userInterface.Received(0).CookingIsDone();
             }
         }
