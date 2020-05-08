@@ -102,7 +102,7 @@ namespace Microwave.Test.Integration
             _timer.Expired +=
                 (o, args) => wasCalled = true;
 
-            _sut.StartCooking(70, 2000);
+            _sut.StartCooking(70, 2);
             Thread.Sleep(3000);
 
             Assert.True(wasCalled);
