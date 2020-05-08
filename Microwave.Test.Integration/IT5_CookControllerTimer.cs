@@ -50,5 +50,14 @@ namespace Microwave.Test.Integration
             Assert.That(_timer.TimeRemaining, Is.EqualTo(17000));
         }
 
+        [Test]
+        public void StopTimer()
+        {
+            _sut.StartCooking(70, 5000);
+            _sut.Stop();
+            Thread.Sleep(1500);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(5000));
+        }
+
     }
 }
