@@ -100,7 +100,6 @@ namespace Microwave.Test.Integration
 
                 //Assert
                 Assert.AreEqual(expectedOutput, stringWriter.ToString());
-                Assert.That(_sut.isCooking, Is.EqualTo(false));
             }
         }
 
@@ -120,7 +119,6 @@ namespace Microwave.Test.Integration
                 //_timer.Expired += Raise.EventWith(EventArgs.Empty);
 
                 //Assert
-                Assert.That(_sut.isCooking,Is.EqualTo(false));
                 Assert.That(_timer.TimeRemaining <= 0);
             }
         }
