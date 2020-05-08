@@ -44,10 +44,10 @@ namespace Microwave.Test.Integration
         [Test]
         public void StopTimer()
         {
-            _sut.StartCooking(70,10000);
+            _sut.StartCooking(70,5000);
             _sut.Stop();
             Thread.Sleep(1500);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(10000));
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(5000));
         }
     }
 }
