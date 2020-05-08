@@ -56,6 +56,10 @@ namespace Microwave.Test.Integration
             _sut.StartCooking(70, 2000);
             Thread.Sleep(2500);
             _powerTube.Received(1).TurnOff();
+
+        }
+        
+        [Test]
         public void StopTimer()
         {
             _sut.StartCooking(70, 5000);
