@@ -41,19 +41,19 @@ namespace Microwave.Test.Integration
         [Test]
         public void StartCookingStartTimer_TimeRemaining_Decrements()
         {
-            _sut.StartCooking(70, 20000);
+            _sut.StartCooking(70, 20);
             Thread.Sleep(1500);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(19000));
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(19));
             Thread.Sleep(1000);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(18000));
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(18));
             Thread.Sleep(1000);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(17000));
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(17));
         }
 
         [Test]
         public void PowerTubeReceives_TurnOff_AfterTimerExpires()
         {
-            _sut.StartCooking(70, 2000);
+            _sut.StartCooking(70, 2);
             Thread.Sleep(2500);
             _powerTube.Received(1).TurnOff();
 
@@ -62,11 +62,13 @@ namespace Microwave.Test.Integration
         [Test]
         public void StopTimer()
         {
-            _sut.StartCooking(70, 5000);
+            _sut.StartCooking(70, 50);
             _sut.Stop();
             Thread.Sleep(1500);
-            Assert.That(_timer.TimeRemaining, Is.EqualTo(5000));
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(50));
         }
+
+
 
     }
 }
