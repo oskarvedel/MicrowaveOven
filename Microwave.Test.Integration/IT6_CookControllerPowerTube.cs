@@ -110,10 +110,10 @@ namespace Microwave.Test.Integration
             {
                 Console.SetOut(stringWriter);
                 //Arrange
-                string expectedOutput = $"PowerTube works with {20}\r\nDisplay shows: 00:09\r\nPowerTube turned off\r\n";
+                string expectedOutput = $"PowerTube works with {19}\r\nDisplay shows: 00:09\r\nPowerTube turned off\r\n";
 
                 //Act
-                _sut.StartCooking(20, 10);
+                _sut.StartCooking(19, 10);
                 Thread.Sleep(1500);
                 _sut.Stop();
 
