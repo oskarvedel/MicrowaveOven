@@ -50,6 +50,28 @@ namespace Microwave.Test.Integration
             Assert.That(_timer.TimeRemaining, Is.EqualTo(17));
         }
 
+        [TestCase(20)]
+        [TestCase(19)]
+        [TestCase(18)]
+        public void StartCookingStartTimer_Display_Decrements_LessThanOneMinute(int timeRemaining)
+        {
+            _sut.StartCooking(70, timeRemaining+1);
+            Thread.Sleep(1500);
+            _output.Received(1).OutputLine($"Display shows: 00:{timeRemaining}");
+        }
+
+        [Test]
+        public void StartCookingStartTimer_Display_Decrements_OneMinuteMark()
+        {
+            _sut.StartCooking(70,  62);
+            Thread.Sleep(1500);
+            _output.Received(1).OutputLine($"Display shows: 01:01");
+            Thread.Sleep(1000);
+            _output.Received(1).OutputLine($"Display shows: 01:00");
+            Thread.Sleep(1000);
+            _output.Received(1).OutputLine($"Display shows: 00:59");
+        }
+
         [Test]
         public void PowerTubeReceives_TurnOff_AfterTimerExpires()
         {
