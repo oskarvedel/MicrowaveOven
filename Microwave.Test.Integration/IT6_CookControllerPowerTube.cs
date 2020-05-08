@@ -104,6 +104,26 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
+        public void StopTurnOffCorrectly_afterRunning()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                //Arrange
+                string expectedOutput = $"PowerTube works with {10}\r\nDisplay shows: 00:09\r\nPowerTube turned off\r\n";
+
+                //Act
+                _sut.StartCooking(10, 10);
+                Thread.Sleep(1500);
+                _sut.Stop();
+
+                //Assert
+                Assert.AreEqual(expectedOutput, stringWriter.ToString());
+                _userInterface.Received(0).CookingIsDone();
+            }
+        }
+
+        [Test]
         public void OnTimerExpiredTurnOff()
         {
             using (StringWriter stringWriter = new StringWriter())
@@ -112,14 +132,16 @@ namespace Microwave.Test.Integration
 
                 //Arrange
                 _sut.StartCooking(10, 2);
-                string expectedOutput = $"PowerTube works with {10}\r\nPowerTube turned off\r\n";
+                string expectedOutput = $"PowerTube works with {10}\r\nDisplay shows: 00:01\r\nDisplay shows: 00:00\r\nPowerTube turned off\r\n";
 
                 //Act
                 Thread.Sleep(2500);
-                //_timer.Expired += Raise.EventWith(EventArgs.Empty);
 
                 //Assert
                 Assert.That(_timer.TimeRemaining <= 0);
+                Assert.AreEqual(expectedOutput, stringWriter.ToString());
+                _userInterface.Received(1).CookingIsDone();
+
             }
         }
     }
