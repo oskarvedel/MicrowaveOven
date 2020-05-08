@@ -58,7 +58,34 @@ namespace Microwave.Test.Integration
             _powerTube.Received(1).TurnOff();
 
         }
-        
+        [Test]
+        public void StartedCooking_CheckForTick()
+        {
+            var wasCalled = false;
+
+            _timer.TimerTick +=
+                (o, args) => wasCalled = true;
+
+            _sut.StartCooking(70, 2000);
+            Thread.Sleep(1100);
+
+            Assert.True(wasCalled);
+        }
+
+        [Test]
+        public void TimerExpired_TimerStopped()
+        {
+            var wasCalled = false;
+
+            _timer.Expired +=
+                (o, args) => wasCalled = true;
+
+            _sut.StartCooking(70, 2000);
+            Thread.Sleep(3000);
+
+            Assert.True(wasCalled);
+        }
+
         [Test]
         public void StopTimer()
         {
