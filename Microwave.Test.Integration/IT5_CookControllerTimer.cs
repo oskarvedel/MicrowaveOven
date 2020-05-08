@@ -50,5 +50,13 @@ namespace Microwave.Test.Integration
             Assert.That(_timer.TimeRemaining, Is.EqualTo(17000));
         }
 
+        [Test]
+        public void PowerTubeReceives_TurnOff_AfterTimerExpires()
+        {
+            _sut.StartCooking(70, 2000);
+            Thread.Sleep(2500);
+            _powerTube.Received(1).TurnOff();
+        }
+
     }
 }
