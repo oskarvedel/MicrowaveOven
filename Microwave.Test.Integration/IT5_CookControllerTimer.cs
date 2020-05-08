@@ -102,7 +102,7 @@ namespace Microwave.Test.Integration
             _timer.Expired +=
                 (o, args) => wasCalled = true;
 
-            _sut.StartCooking(70, 2000);
+            _sut.StartCooking(70, 2);
             Thread.Sleep(3000);
 
             Assert.True(wasCalled);
@@ -117,7 +117,21 @@ namespace Microwave.Test.Integration
             Assert.That(_timer.TimeRemaining, Is.EqualTo(50));
         }
 
+        [Test]
+        public void UserInterface_Receives_CookingIsDone_WhenTimerExpires()
+        {
+            _sut.StartCooking(70, 2);
+            Thread.Sleep(2500);
+            _userInterface.Received(1).CookingIsDone();
+        }
 
+        [Test]
+        public void UserInterface_DoesNotReceive_CookingIsDone_WhenTimer_HasNot_Expired()
+        {
+            _sut.StartCooking(70, 3);
+            Thread.Sleep(2500);
+            _userInterface.Received(0).CookingIsDone();
+        }
 
     }
 }
