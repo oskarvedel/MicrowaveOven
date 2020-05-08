@@ -112,7 +112,7 @@ namespace Microwave.Test.Integration
                 Console.SetOut(stringWriter);
 
                 //Arrange
-                _sut.StartCooking(10, 2000);
+                _sut.StartCooking(10, 2);
                 string expectedOutput = $"PowerTube works with {10}\r\nPowerTube turned off\r\n";
 
                 //Act
