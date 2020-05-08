@@ -1,8 +1,10 @@
-﻿using MicrowaveOvenClasses.Boundary;
+﻿using System.Threading;
+using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace Microwave.Test.Integration
 {
@@ -34,6 +36,18 @@ namespace Microwave.Test.Integration
         {
             _sut.StartCooking(70, 40);
             Assert.That(_timer.TimeRemaining, Is.EqualTo(40));
+        }
+
+
+
+
+        [Test]
+        public void StopTimer()
+        {
+            _sut.StartCooking(70,10000);
+            _sut.Stop();
+            Thread.Sleep(1500);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(10000));
         }
     }
 }
